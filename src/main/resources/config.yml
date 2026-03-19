@@ -1,0 +1,15 @@
+# Instant Potion Brewing - Configuration
+# Hot reload: Use /instantbrew reload to apply changes without restarting the server
+
+# Brew delay in ticks (20 ticks = 1 second)
+# 0 = instant (potion completes in 1 tick, ~50ms)
+# 20 = 1 second delay
+# 200 = 10 seconds (default vanilla for most recipes)
+brew-delay-ticks: 0
+
+# Blaze powder: fuel always at max, never consumed
+blaze-powder-infinite: false
+
+# Shift-click blaze powder goes to ingredient slot (top) instead of fuel slot (right)
+# When false, shift-click behaves normally (vanilla)
+blaze-powder-shift-click-to-ingredient: false

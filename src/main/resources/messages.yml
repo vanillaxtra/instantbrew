@@ -1,0 +1,8 @@
+instantbrew:
+  no-permission: "§cYou do not have permission to use this command."
+  reload-usage: "§e[InstantBrew] §fUsage: /instantbrew reload"
+  reload-success: "§a[InstantBrew] Config reloaded! Brew delay: §f{delay} ticks§a."
+
+  # When infinite fuel is enabled, we block attempts to place blaze powder into the fuel slot.
+  no-fuel-infinite: "§cYou can't put blaze powder in the fuel slot when infinite fuel is enabled."
+

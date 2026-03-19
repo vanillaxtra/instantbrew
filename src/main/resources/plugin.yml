@@ -1,0 +1,20 @@
+name: InstantBrew
+version: '${version}'
+main: dev.instantbrew.InstantBrewPlugin
+api-version: '1.21'
+description: Configurable brewing delay - set potion brew time to any value (0 = instant)
+authors: [instantbrew]
+
+# Works on Paper, Folia, and Spigot
+softdepend: []
+
+commands:
+  instantbrew:
+    description: Reload config or show current settings
+    usage: /instantbrew [reload]
+    permission: instantbrew.reload
+
+permissions:
+  instantbrew.reload:
+    description: Allows reloading the config
+    default: op
