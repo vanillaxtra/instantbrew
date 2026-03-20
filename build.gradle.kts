@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.instantbrew"
-version = "1.0.0"
+version = project.property("version")!!
 
 repositories {
     mavenCentral()
