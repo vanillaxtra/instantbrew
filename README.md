@@ -3,38 +3,48 @@
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/instantbrew/instantbrew)
 [![Platform](https://img.shields.io/badge/platform-Paper%20%7C%20Spigot-green.svg)](https://papermc.io/)
 [![Folia](https://img.shields.io/badge/Folia-supported-8B5CF6.svg)](https://papermc.io/software/folia)
+[![bStats](https://img.shields.io/badge/bStats-metrics-00ADB5.svg)](https://bstats.org/plugin/bukkit/instantbrew/30302)
 
-Configure brewing stand speed and behaviour. Set near-instant potions, optional infinite blaze powder, and smarter shift-clicking.
+Lightweight control over brewing stands: how fast potions brew, optional infinite blaze-powder fuel, and smarter shift-clicking for blaze powder. Config hot-reloads—no server restart.
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/WpYZkrdNVe)
 
-### Instant brewing & infinite blaze powder
+---
+
+## Summary
+
+InstantBrew runs on **Paper**, **Spigot**, and **Folia** (Minecraft 1.21+). Tune `brew-delay-ticks` from instant to any delay you want, optionally stop blaze powder from being consumed while keeping the fuel bar full, and choose whether shift-click places blaze powder in the ingredient slot. Use `/instantbrew reload` after editing `config.yml`.
+
+---
+
+## Showcase
+
+### Instant brewing and infinite blaze powder
 
 ![Instant brewing and infinite fuel](assets/showcase.gif)
 
-Potions complete immediately when you add an ingredient. With `blaze-powder-infinite` enabled, the fuel bar stays full and blaze powder is never consumed.
+With the default near-instant delay, potions finish as soon as you add an ingredient. Enable `blaze-powder-infinite` so the fuel bar stays full and blaze powder is not consumed.
 
 ### Configurable brew delay
 
-Set `brew-delay-ticks` in the config to add a delay (e.g. `20` = 1 second, `200` = 10 seconds). The brewing progress arrow animates over the configured time before potions complete.
+Set `brew-delay-ticks` for a slower brew (e.g. `20` = 1 second, `200` = 10 seconds). The brewing arrow animates over that time before potions complete.
 
 ---
 
 ## Features
 
-- **Configurable brew delay** — Set brew time in ticks (0 = near-instant, 20 = 1 second)
-- **Infinite blaze powder** — Fuel bar stays full and blaze powder is never consumed (optional)
-- **Shift-click to ingredient** — Blaze powder goes straight into the ingredient slot instead of the fuel slot (optional)
-- **Hot reload** — Change config and reload without restarting the server
+- **Configurable brew delay** — Ticks until brew completes (`0` ≈ instant, `20` = 1 second)
+- **Infinite blaze powder** — Optional: full fuel bar, no powder consumption
+- **Shift-click to ingredient** — Optional: shift-click blaze powder into the ingredient slot instead of fuel
+- **Hot reload** — `/instantbrew reload` applies config without restarting
 
 ---
 
 ## Installation
 
-1. Drop `InstantBrew-1.0.0.jar` into your server's `plugins` folder
-2. Start or restart the server
-3. Edit `plugins/InstantBrew/config.yml` to your liking
-4. Use `/instantbrew reload` to apply changes — no restart needed
+1. Put `InstantBrew-1.0.0.jar` in your server’s `plugins` folder (use the **shadow** JAR from [Building](#building)—it bundles bStats).
+2. Start the server once so `plugins/InstantBrew/config.yml` is created.
+3. Edit the config to taste, then run `/instantbrew reload`.
 
 ---
 
@@ -57,44 +67,52 @@ Set `brew-delay-ticks` in the config to add a delay (e.g. `20` = 1 second, `200`
 
 ## Configuration
 
-All options live in `plugins/InstantBrew/config.yml`:
+All options are in `plugins/InstantBrew/config.yml`:
 
 | Option | Description |
 |--------|-------------|
-| `brew-delay-ticks` | Time until brewing finishes. 20 ticks = 1 second. Use 0 for near-instant. |
-| `blaze-powder-infinite` | When true, fuel never drains and blaze powder isn't consumed. |
-| `blaze-powder-shift-click-to-ingredient` | When true, shift-clicking blaze powder puts it in the ingredient slot. When false, vanilla behaviour. |
+| `brew-delay-ticks` | Time until brewing finishes. `20` ticks = 1 second. `0` = near-instant. |
+| `blaze-powder-infinite` | If `true`, fuel does not drain and blaze powder is not consumed. |
+| `blaze-powder-shift-click-to-ingredient` | If `true`, shift-clicking blaze powder moves it to the ingredient slot. |
 
-**Example config:**
+**Example:**
 
 ```yaml
 brew-delay-ticks: 0
 blaze-powder-infinite: false
-blaze-powder-shift-click-to-ingredient: false  # true = shift-click puts blaze powder in ingredient slot
+blaze-powder-shift-click-to-ingredient: false
 ```
 
 ---
 
 ## Compatibility
 
-Works on **Paper**, **Folia**, and **Spigot** (1.21+). One JAR for all.
+**Paper**, **Folia**, and **Spigot**, Minecraft **1.21+**. One JAR for all.
 
 ---
 
 ## Building
 
-Requires Java 21.
+Requires **Java 21**.
 
 ```bash
 ./gradlew build
 ```
 
-Output: `build/libs/InstantBrew-1.0.0.jar`
-
-> **Note for developers:** Replace `BSTATS_PLUGIN_ID` in `InstantBrewPlugin.java` with your plugin ID from [bStats](https://bstats.org/add-plugin) after registering.
+Artifact: `build/libs/InstantBrew-1.0.0.jar` (shadow JAR; includes relocated bStats).
 
 ---
 
 ## bStats
 
-This plugin uses [bStats](https://bstats.org/) to collect anonymous usage statistics (e.g. server software, Minecraft version). This helps with development and is fully optional — you can disable it in the `bstats` config under your server's `plugins` folder.
+This plugin reports anonymous usage to **[bStats — InstantBrew](https://bstats.org/plugin/bukkit/instantbrew/30302)** (plugin ID **30302**). That helps see Minecraft version, server software, and adoption—no personal data.
+
+**Integration check (already set in code):** `InstantBrewPlugin` constructs bStats `Metrics` with service ID `30302`, matching the dashboard URL above. The shadow JAR relocates `org.bstats` into `dev.instantbrew`, and the plugin resolves the relocated `Metrics` class at runtime.
+
+**If your server does not appear on the graph yet:** bStats sends the first payload after a random **3–6 minutes**, and the site updates around **:00 and :30** each hour. Ensure you are using the **built shadow JAR** (not a thin JAR without dependencies). Server owners can opt out via the global bStats settings under the server’s `plugins` folder ([server owner info](https://bstats.org/docs/server-owners)).
+
+### Live chart (servers using InstantBrew)
+
+[![bStats: servers using InstantBrew](https://bstats.org/signatures/bukkit/instantbrew.svg)](https://bstats.org/plugin/bukkit/instantbrew/30302)
+
+*Signature chart provided by [bStats](https://bstats.org/). If the image does not load, open the plugin page directly.*

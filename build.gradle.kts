@@ -26,16 +26,6 @@ tasks.processResources {
     }
 }
 
-tasks.jar {
-    archiveClassifier.set("thin")
-    manifest {
-        attributes(
-            "Built-By" to System.getProperty("user.name"),
-            "Implementation-Title" to project.name,
-            "Implementation-Version" to project.version
-        )
-    }
-}
 
 tasks.shadowJar {
     archiveClassifier.set("")
