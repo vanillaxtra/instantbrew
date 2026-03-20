@@ -35,6 +35,7 @@ Set `brew-delay-ticks` for a slower brew (e.g. `20` = 1 second, `200` = 10 secon
 
 - **Configurable brew delay** — Ticks until brew completes (`0` ≈ instant, `20` = 1 second)
 - **Infinite blaze powder** — Optional: full fuel bar, no powder consumption
+- **Fuel max on place/open** — Optional: placing or opening a brewing stand sets fuel to max
 - **Shift-click to ingredient** — Optional: shift-click blaze powder into the ingredient slot instead of fuel
 - **Hot reload** — `/instantbrew reload` applies config without restarting
 
@@ -74,6 +75,7 @@ All options are in `plugins/InstantBrew/config.yml`:
 | `brew-delay-ticks` | Time until brewing finishes. `20` ticks = 1 second. `0` = near-instant. |
 | `blaze-powder-infinite` | If `true`, fuel does not drain and blaze powder is not consumed. |
 | `blaze-powder-shift-click-to-ingredient` | If `true`, shift-clicking blaze powder moves it to the ingredient slot. |
+| `fuel-max-on-place-open` | If `true`, placing or opening a brewing stand sets its fuel to max. |
 
 **Example:**
 
@@ -81,6 +83,7 @@ All options are in `plugins/InstantBrew/config.yml`:
 brew-delay-ticks: 0
 blaze-powder-infinite: false
 blaze-powder-shift-click-to-ingredient: false
+fuel-max-on-place-open: true
 ```
 
 ---

@@ -8,6 +8,7 @@ public class PluginConfig {
     private int brewDelayTicks;
     private boolean blazePowderInfinite;
     private boolean blazePowderShiftClickToIngredient;
+    private boolean fuelMaxOnPlaceOpen;
 
     public PluginConfig(InstantBrewPlugin plugin) {
         this.plugin = plugin;
@@ -24,6 +25,7 @@ public class PluginConfig {
         blazePowderInfinite = cfg.getBoolean("blaze-powder-infinite", false);
         blazePowderShiftClickToIngredient = cfg.getBoolean("blaze-powder-shift-click-to-ingredient",
                 cfg.getBoolean("blaze-powder-shift-click-to-fuel", false));
+        fuelMaxOnPlaceOpen = cfg.getBoolean("fuel-max-on-place-open", true);
     }
 
     public int getBrewDelayTicks() {
@@ -36,5 +38,9 @@ public class PluginConfig {
 
     public boolean isBlazePowderShiftClickToIngredient() {
         return blazePowderShiftClickToIngredient;
+    }
+
+    public boolean isFuelMaxOnPlaceOpen() {
+        return fuelMaxOnPlaceOpen;
     }
 }

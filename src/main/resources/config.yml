@@ -13,3 +13,6 @@ blaze-powder-infinite: false
 # Shift-click blaze powder goes to ingredient slot (top) instead of fuel slot (right)
 # When false, shift-click behaves normally (vanilla)
 blaze-powder-shift-click-to-ingredient: false
+
+# When true, placing or opening a brewing stand sets its fuel to max
+fuel-max-on-place-open: true
