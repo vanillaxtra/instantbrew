@@ -5,7 +5,7 @@
 [![Folia](https://img.shields.io/badge/Folia-supported-8B5CF6.svg)](https://papermc.io/software/folia)
 [![bStats](https://img.shields.io/badge/bStats-metrics-00ADB5.svg)](https://bstats.org/plugin/bukkit/instantbrew/30302)
 
-Lightweight control over brewing stands: how fast potions brew, optional infinite blaze-powder fuel, and smarter shift-clicking for blaze powder. Config hot-reloads—no server restart.
+Lightweight control over brewing stands: how fast potions brew, with optional infinite blaze-powder fuel, and smarter shift-clicking for blaze powder. Config hot-reloads—no server restart.
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/WpYZkrdNVe)
 
